@@ -40,7 +40,7 @@ class Item(Resource):
         return item.json(), 201
 
     def delete(self, name):
-        ItemModel.find_by_name(name)
+        item = ItemModel.find_by_name(name)
         if item:
             item.delete_from_db()
         return {'message': 'Item deleted'}
