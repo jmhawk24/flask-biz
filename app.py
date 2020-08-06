@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -10,7 +12,7 @@ from db import db
 
 #resources usually mapped into database tables as well
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #doesn't have to be sqlite, but sqlalchemy just works
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db') #doesn't have to be sqlite, but sqlalchemy just works
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'secret'
 api = Api(app)
